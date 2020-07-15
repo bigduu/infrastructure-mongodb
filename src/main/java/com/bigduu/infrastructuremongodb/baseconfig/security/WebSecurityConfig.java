@@ -1,5 +1,7 @@
 package com.bigduu.infrastructuremongodb.baseconfig.security;
 
+import com.bigduu.infrastructuremongodb.basefilter.OptionsRequestFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,50 +30,14 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(jsr250Enabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final CusUserDetailsService userDetailsService;
 
-    private final JwtAuthenticationProvider jwtAuthenticationProvider;
+    @Autowired
+    private OptionsRequestFilter optionsRequestFilter;
 
-    private final WeChatAuthenticationProvider weChatAuthenticationProvider;
 
-    private final CusAuthenticationEntryPoint authenticationEntryPoint;
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
 
-    private final OptionsRequestFilter optionsRequestFilter;
-
-    private final DaoAuthenticationSuccessHandler daoAuthenticationSuccessHandler;
-
-    private final DaoAuthenticationFailureHandler daoAuthenticationFailureHandler;
-
-    private final WeChatAuthenticationSuccessHandler weChatAuthenticationSuccessHandler;
-
-    private final WeChatAuthenticationFailureHandler weChatAuthenticationFailureHandler;
-
-    private final JwtAuthenticationSuccessHandler jwtAuthenticationSuccessHandler;
-
-    private final JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler;
-
-    private final UserAccessDeniedHandler accessDeniedHandler;
-
-    private final TokenClearLogoutHandler tokenClearLogoutHandler;
-
-    private final LogoutSuccessHandler logoutSuccessHandler;
-
-    public WebSecurityConfig(WeChatAuthenticationProvider weChatAuthenticationProvider, CusUserDetailsService userDetailsService, JwtAuthenticationProvider jwtAuthenticationProvider, CusAuthenticationEntryPoint authenticationEntryPoint, OptionsRequestFilter optionsRequestFilter, LogoutSuccessHandler logoutSuccessHandler, TokenClearLogoutHandler tokenClearLogoutHandler, DaoAuthenticationSuccessHandler daoAuthenticationSuccessHandler, DaoAuthenticationFailureHandler daoAuthenticationFailureHandler, UserAccessDeniedHandler accessDeniedHandler, WeChatAuthenticationSuccessHandler weChatAuthenticationSuccessHandler, WeChatAuthenticationFailureHandler weChatAuthenticationFailureHandler, JwtAuthenticationSuccessHandler jwtAuthenticationSuccessHandler, JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler) {
-        this.weChatAuthenticationProvider = weChatAuthenticationProvider;
-        this.userDetailsService = userDetailsService;
-        this.jwtAuthenticationProvider = jwtAuthenticationProvider;
-        this.authenticationEntryPoint = authenticationEntryPoint;
-        this.optionsRequestFilter = optionsRequestFilter;
-        this.logoutSuccessHandler = logoutSuccessHandler;
-        this.tokenClearLogoutHandler = tokenClearLogoutHandler;
-        this.daoAuthenticationSuccessHandler = daoAuthenticationSuccessHandler;
-        this.daoAuthenticationFailureHandler = daoAuthenticationFailureHandler;
-        this.accessDeniedHandler = accessDeniedHandler;
-        this.weChatAuthenticationSuccessHandler = weChatAuthenticationSuccessHandler;
-        this.weChatAuthenticationFailureHandler = weChatAuthenticationFailureHandler;
-        this.jwtAuthenticationSuccessHandler = jwtAuthenticationSuccessHandler;
-        this.jwtAuthenticationFailureHandler = jwtAuthenticationFailureHandler;
-    }
 
 
     @Override
