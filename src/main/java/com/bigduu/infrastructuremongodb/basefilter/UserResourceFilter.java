@@ -34,15 +34,16 @@ public class UserResourceFilter implements Filter {
         String requestMethod = request.getMethod();
         String requestUrl = request.getServletPath();
         String clientIp = getClientIp(request);
-        log.info("user resource filter is invoked with url:[{}],(method:[{}]) from client:[{}].(configured protected Urls:{}", requestUrl, requestMethod, clientIp, protectedUrlsConfiguration.getProtectedUrls());
-        if (protectedUrlsConfiguration.getProtectedUrls().stream().anyMatch(requestUrl::matches)) {
+        log.info("user resource filter is invoked with url:[{}],(method:[{}]) from client:[{}].(configured protected Urls:{}", requestUrl, requestMethod, clientIp, protectedUrlsConfiguration.getNotProtectedUrls());
+        if (protectedUrlsConfiguration.getNotProtectedUrls().stream().anyMatch(requestUrl::matches)) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             if (authentication != null) {
                 String username = authentication.getName();
                 log.info("Invoked permission filter for [{}]",username);
             }
         }
-
+        filterChain.doFilter(request, servletResponse);
+        log.info("Completed request in [{}] millis",System.currentTimeMillis()-startTime);
     }
 
     private String getClientIp(HttpServletRequest httpServletRequest) {

@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public abstract class BaseServiceImpl<T extends BaseMongoEntity> implements BaseService<T> {
 
-    @Resource(name = "ApplicationEventPublisher")
+    @Autowired
     protected ApplicationEventPublisher publisher;
 
     protected MongoRepository<T, String> repository;

@@ -1,7 +1,6 @@
 package com.bigduu.infrastructuremongodb.baseconfig.security;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -21,5 +20,9 @@ import java.util.List;
 @Getter
 @Setter
 public class ProtectedUrlsConfiguration {
-    private List<String> protectedUrls;
+    private List<String> notProtectedUrls;
+
+    public ProtectedUrlsConfiguration() {
+        this.notProtectedUrls = new ArrayList<>();
+    }
 }

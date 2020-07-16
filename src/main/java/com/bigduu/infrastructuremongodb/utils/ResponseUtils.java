@@ -1,7 +1,7 @@
 package com.bigduu.infrastructuremongodb.utils;
 
-import com.csjx.qszs.infrastructure.advice.GlobalResponseBody;
-import com.csjx.qszs.infrastructure.advice.HttpCode;
+import com.bigduu.infrastructuremongodb.baseadvice.GlobalResponseBody;
+import com.bigduu.infrastructuremongodb.baseadvice.HttpCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.http.HttpServletResponse;

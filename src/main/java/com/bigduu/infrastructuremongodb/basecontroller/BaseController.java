@@ -59,7 +59,7 @@ public abstract class BaseController<T extends BaseMongoEntity> {
 
 
     @PostMapping
-    public T addOne(@RequestBody T t) {
+    public T create(@RequestBody T t) {
         return service.addOne(t).orElse(null);
     }
 
